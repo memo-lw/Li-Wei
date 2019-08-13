@@ -42,13 +42,6 @@
       3).^表示行的开头， ^\d 表示必须以数字开头
       4).$表示行的结束， \d$表示必须以数字结束
 
-  re模块
-      常见的判断方法:test = '用户输入的字符串'
-                     if re.match(r'正则表达式', test):
-                         print('ok')
-                     else:
-                         print('failed')
-
   切分字符串
       例子：re.split(r'\s+', 'a b c')            =>['a', 'b', 'c']
             re.split(r'[\s\,]+', 'a,b, c d')     => ['a', 'b', 'c', 'd']
@@ -61,6 +54,46 @@
             m.group(1)       =>   '010'
             m.group(2)       =>   '12345'
       
-3.re模块
-4.datetime模块学习
+3.  re模块：用要用r开头
+      常见的判断方法:test = '用户输入的字符串'
+                     if re.match(r'正则表达式', test):
+                         print('ok')
+                     else:
+                         print('failed')
+4.datetime模块学习：是 Python 处理日期和时间的标准库
+  导入：from datetime import datetime
+
+        datetime.now()                     #返回当前日期和时间，其类型是 datetime
+        dt = datetime(2015, 4, 19, 12, 20) # 用指定日期时间创建 datetime 获取指定日期和时间
+        #datetime 转换为 timestamp
+        dt.timestamp()                     # 把 timestamp 转换为 datetime
+        #timestamp 转换为 datetime  
+        t = 1429417200.0
+        print(datetime.fromtimestamp(t))   # 本地时间    => 2015-04-19 12:20:00
+        print(datetime.utcfromtimestamp(t)) # UTC 时间   => 2015-04-19 04:20:00
+        #str 转换为 datetime
+        cday = datetime.strptime('2015-6-1 18:19:59', '%Y-%m-%d %H:%M:%S') => 2015-06-01 18:19:59
+        #datetime 转换为 str
+        print(now.strftime('%a, %b %d %H:%M'))  =>  Mon, May 05 16:28
+
+        #datetime 加减
+        from datetime import datetime, timedelta
+        datetime.now() + timedelta(hours=10)  =>  
+        #本地时间转换为 UTC 时间
+        #时区转换 	 utcnow()拿到当前的 UTC 时间 再转换为任意时区的时间：
+        utc_dt = datetime.utcnow().replace(tzinfo=timezone.utc)  #拿到 UTC 时间，并强制设置时区为 UTC+0:00:
+        
+	
 5.http请求
+  步骤 1：浏览器首先向服务器发送 HTTP 请求
+          方法： GET 还是 POST， GET 仅请求资源， POST 会附带用户数据
+          路径： /full/url/path；
+          域名：由 Host 头指定： Host: www.sina.com.cn
+          其他：相关的 Header；如果是 POST，那么请求还包括一个 Body
+  步骤 2：服务器向浏览器返回 HTTP 响应，响应包括
+          响应代码： 200 表示成功， 
+                     3xx 表示重定向， 
+                     4xx 表示客户端发送的请求有错误， 
+                     5xx 表示服务器端处理时发生了错误；
+          响应类型：由 Content-Type 指定；
+  步骤 3：如果浏览器还需要继续向服务器请求其他资源，比如图片，就再次发出 HTTP 请求，重复步骤 1、 2 
