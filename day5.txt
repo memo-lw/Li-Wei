@@ -1,0 +1,66 @@
+1.类和对象:
+  例：其中的方法中，self必传
+  class Car():
+      """一次模拟汽车的简单尝试"""
+      def __init__(self, make, model, year):
+          """初始化描述汽车的属性"""
+          self.make = make
+          self.model = model
+          self.year = year
+      def get_descriptive_name(self):
+          """返回整洁的描述性信息"""
+          long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+          return long_name.title()
+  my_new_car = Car('audi', 'a4', 2016)      #实例化
+  print(my_new_car.get_descriptive_name())  #调用方法
+
+  => 2016 Audi A4
+
+2.正则表达式:是一种用来匹配字符串的强有力的武器
+  基础：
+      \d 可以匹配一个数字
+      \w 可以匹配一个字母或数字
+      \s 可以匹配1个空格空格
+      .  可以匹配任意字符
+      *  表示任意个字符（包括 0 个）
+      +  表示至少一个字符
+      ?  表示 0 个或 1 个字符
+      {n}表示 n 个字符
+      {n,m}表示 n-m 个字符
+  
+      例子：\d{3}\s+\d{3,8}  =>  \d{3}表示匹配 3 个数字
+                                 \s 可以匹配一个空格（也包括 Tab 等空白符），所以\s+表示至少有一个空格
+                                 \d{3,8}表示 3-8 个数字
+
+  进阶：
+      1).可用[]表示范围
+       例子：[0-9a-zA-Z\_]可以匹配一个数字、字母或者下划线
+             [0-9a-zA-Z\_]+可以匹配至少由一个数字、字母或者下划线组成的字符串
+             [a-zA-Z\_][0-9a-zA-Z\_]*可以匹配由字母或下划线开头，后接任意个由一个数字、字母或者下划线组成的字符串
+      2).A|B 可以匹配 A 或 B
+       例子：[P|p]ython 可以匹配'Python'或者'python'
+      3).^表示行的开头， ^\d 表示必须以数字开头
+      4).$表示行的结束， \d$表示必须以数字结束
+
+  re模块
+      常见的判断方法:test = '用户输入的字符串'
+                     if re.match(r'正则表达式', test):
+                         print('ok')
+                     else:
+                         print('failed')
+
+  切分字符串
+      例子：re.split(r'\s+', 'a b c')            =>['a', 'b', 'c']
+            re.split(r'[\s\,]+', 'a,b, c d')     => ['a', 'b', 'c', 'd']
+            re.split(r'[\s\,\;]+', 'a,b;; c d')  => ['a', 'b', 'c', 'd']
+
+  分组:如果正则表达式中定义了组，就可以用group提取出来
+      例子：m = re.match(r'^(\d{3})-(\d{3,8})$', '010-12345')
+            
+            m.group(0)       =>   '010-12345'
+            m.group(1)       =>   '010'
+            m.group(2)       =>   '12345'
+      
+3.re模块
+4.datetime模块学习
+5.http请求
