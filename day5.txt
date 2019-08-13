@@ -41,18 +41,6 @@
        例子：[P|p]ython 可以匹配'Python'或者'python'
       3).^表示行的开头， ^\d 表示必须以数字开头
       4).$表示行的结束， \d$表示必须以数字结束
-
-  切分字符串
-      例子：re.split(r'\s+', 'a b c')            =>['a', 'b', 'c']
-            re.split(r'[\s\,]+', 'a,b, c d')     => ['a', 'b', 'c', 'd']
-            re.split(r'[\s\,\;]+', 'a,b;; c d')  => ['a', 'b', 'c', 'd']
-
-  分组:如果正则表达式中定义了组，就可以用group提取出来
-      例子：m = re.match(r'^(\d{3})-(\d{3,8})$', '010-12345')
-            
-            m.group(0)       =>   '010-12345'
-            m.group(1)       =>   '010'
-            m.group(2)       =>   '12345'
       
 3.  re模块：用要用r开头
       常见的判断方法:test = '用户输入的字符串'
@@ -60,6 +48,17 @@
                          print('ok')
                      else:
                          print('failed')
+      切分字符串
+          例子：re.split(r'\s+', 'a b c')            =>['a', 'b', 'c']
+                re.split(r'[\s\,]+', 'a,b, c d')     => ['a', 'b', 'c', 'd']
+                re.split(r'[\s\,\;]+', 'a,b;; c d')  => ['a', 'b', 'c', 'd']
+
+      分组:如果正则表达式中定义了组，就可以用group提取出来
+          例子：m = re.match(r'^(\d{3})-(\d{3,8})$', '010-12345')
+            
+                m.group(0)       =>   '010-12345'
+                m.group(1)       =>   '010'
+                m.group(2)       =>   '12345'
 4.datetime模块学习：是 Python 处理日期和时间的标准库
   导入：from datetime import datetime
 
